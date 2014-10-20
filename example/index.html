@@ -1,0 +1,51 @@
+
+<!-- utils -->
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- ever lib -->
+<style>
+  [m-cloak] {
+    /* allows height */
+    /* visibility: hidden; */
+
+    display: none;
+  }
+</style>
+<script src="../ever.js"></script>
+
+
+
+<!-- dom -->
+<div id="app" m-app>
+  <div m-unit m-cloak>
+    <h1 m-text="title"></h1>
+    <ul>
+      <li m-repeat="jobs"
+        m-text="content + (completed ? ' √' : '')"></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- logic -->
+<script>
+  var todosData = {
+    title: 'Todos',
+    jobs: [
+      {
+        completed: false,
+        content: 'Read the book'
+      },
+      {
+        completed: true,
+        content: 'Write the code'
+      },
+      {
+        completed: false,
+        content: 'Go to bed'
+      }
+    ]
+  }
+  $('#app').m(todosData)
+</script>
