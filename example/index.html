@@ -4,7 +4,7 @@
 
 <!-- ever lib -->
 <style>
-  [m-cloak] {
+  [r-cloak] {
     /* allows height */
     /* visibility: hidden; */
 
@@ -16,12 +16,12 @@
 
 
 <!-- dom -->
-<div id="app" m-app>
-  <div m-unit m-cloak>
-    <h1 m-text="title"></h1>
+<div id="app" r-app r-cloak>
+  <div r-unit>
+    <h1 r-text="title"></h1>
     <ul>
-      <li m-repeat="jobs"
-        m-text="content + (completed ? ' √' : '')"></li>
+      <li r-repeat="jobs"
+        r-text="content + (completed ? ' √' : '')"></li>
     </ul>
   </div>
 </div>
@@ -47,5 +47,5 @@
       }
     ]
   }
-  $('#app').m(todosData)
+  $('#app').ever(todosData)
 </script>

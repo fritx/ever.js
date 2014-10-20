@@ -1,62 +1,62 @@
 
 ;(function($){
 
-  $.fn.m = function $m(data){
+  $.fn.ever = function $ever(data){
     return $(this).each(function(){
-      m(this, data)
+      ever(this, data)
     })
   }
 
-  function m(el, data){
+  function ever(el, data){
     var $el = $(el)
 
     // keeps original template and reuses it
-    if ($el.attr('m-unit') != null) {
-      $el.attr('m-cloak', '')
-      if ($el.data('_mStore')) {
-        $el.html($el.data('_mStore'))
+    if ($el.attr('r-unit') != null) {
+      $el.attr('r-cloak', '')
+      if ($el.data('_rStore')) {
+        $el.html($el.data('_rStore'))
       } else {
-        $el.data('_mStore', $el.html())
+        $el.data('_rStore', $el.html())
       }
     }
 
     // todo: nested scopes
     // todo: back tracking scopes access
-    var scope = $el.closest('[m-with], [m-app]').attr('m-with')
+    var scope = $el.closest('[r-with], [r-app]').attr('r-with')
 
-    if ($el.attr('m-repeat')) {
-      var path = $el.attr('m-repeat')
+    if ($el.attr('r-repeat')) {
+      var path = $el.attr('r-repeat')
       var arr = val(path, scope, data)
       var $parent = $el.parent()
-      $el.removeAttr('m-repeat')
+      $el.removeAttr('r-repeat')
 
       var frag = []
       $(arr).each(function(index){
         var $item = $el.clone()
-        $item.attr('m-with', path + '['+ index +']')
+        $item.attr('r-with', path + '['+ index +']')
         frag.push($item)
       })
 
       $el.replaceWith(frag)
       $(frag).each(function(index, item){
-        m(item, data)
+        ever(item, data)
       })
       return
     }
 
-    if ($el.attr('m-text')) {
-      var expr = $el.attr('m-text')
-      $el.removeAttr('m-text')
+    if ($el.attr('r-text')) {
+      var expr = $el.attr('r-text')
+      $el.removeAttr('r-text')
       $el.text(val(expr, scope, data))
     }
 
     // recursively traverses
     $el.children().each(function(i, child){
-      m(child, data)
+      ever(child, data)
     })
 
-    $el.removeAttr('m-with')
-    $el.removeAttr('m-cloak')
+    $el.removeAttr('r-with')
+    $el.removeAttr('r-cloak')
   }
 
   function val(expr, scope, data){

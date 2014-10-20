@@ -9,31 +9,31 @@ Angular-like but templating library
 - Anuglar-like dom style
 - No data-bindings here
 - jQuery/Zepto based, make sure `.data()` is enabled
-- Remember to handle style of `[m-cloak]`
-- Use arrays to `[m-repeat]`
+- Remember to handle style of `[r-cloak]`
+- Use arrays to `[r-repeat]`
 
 
 ## Directives
 
-- `m-app`: Outward scanning boundary
-- `m-unit`: Template storing unit
-- `m-cloak`: Tells a unit is not ready
-- `m-repeat`: Repeats an item
-- `m-text`: Sets the text content
-- `m-with`: Sets a var scope
+- `r-app`: Outward scanning boundary
+- `r-unit`: Template storing unit
+- `r-cloak`: Tells a unit is not ready
+- `r-repeat`: Repeats an item
+- `r-text`: Sets the text content
+- `r-with`: Sets a var scope
 
 
 ## Demo
 
 ```html
-<style>[m-cloak]{display:none;}</style>
+<style>[r-cloak]{display:none;}</style>
 
-<div id="app" m-app>
-  <div m-unit m-cloak>
-    <h1 m-text="title"></h1>
+<div id="app" r-app r-cloak>
+  <div r-unit>
+    <h1 r-text="title"></h1>
     <ul>
-      <li m-repeat="jobs"
-        m-text="content + (completed ? ' √' : '')"></li>
+      <li r-repeat="jobs"
+        r-text="content + (completed ? ' √' : '')"></li>
     </ul>
   </div>
 </div>
@@ -59,5 +59,5 @@ var todosData = {
     }
   ]
 }
-$('#app').m(todosData)
+$('#app').ever(todosData)
 ```
